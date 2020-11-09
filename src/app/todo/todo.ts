@@ -1,10 +1,11 @@
-
 export interface TodoSearchResult {
-  name?: string;
-  checked: boolean;
+  id?: number;
+  title: string;
+  dueDate: string;
 }
 
 export interface Todo {
-  name?: string;
-  checked: boolean;
+  id?: number;
+  title: string;
+  dueDate: string;
 }

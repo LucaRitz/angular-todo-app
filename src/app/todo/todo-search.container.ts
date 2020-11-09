@@ -10,8 +10,7 @@ import {TodoState} from './todo.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container>
-      <!--<app-todo-search-results [results]="results$"></app-todo-search-results>-->
-      Hallo
+      <app-todo-search-results [results]="results$ | async"></app-todo-search-results>
     </ng-container>
   `
 })

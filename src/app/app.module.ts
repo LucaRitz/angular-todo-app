@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {registerLocaleData} from '@angular/common';
 import localeDeCh from '@angular/common/locales/de-CH';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // AoT requires an exported function for factories
 export function createHttpLoader(http: HttpClient): TranslateHttpLoader {
@@ -41,6 +42,8 @@ export function createHttpLoader(http: HttpClient): TranslateHttpLoader {
     BrowserAnimationsModule,
     MatIconModule,
     MatInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'}

@@ -1,5 +1,12 @@
 {
+  "LOGIN": {
+    "USER_NAME": "Username",
+    "PASSWORD": "Passwort",
+    "LOGIN": "Login",
+    "REGISTER": "Registrieren"
+  },
   "TODO": {
-    "TODO": "Todo"
+    "TODO": "Todo",
+    "TITLE": "Todo-Suche"
   }
 }
