@@ -5,16 +5,21 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   selector: 'app-root',
   template: `
     <div>
-      <ul slot="sidenav">
-        <li routerLinkActive="active-item">
-          <a routerLink="todo" fxLayout="row" fxLayoutAlign="start center">
-            <mat-icon>list</mat-icon>
-            <mat-label fxFlexOffset="5">{{ 'TODO.TODO' | translate }}</mat-label>
-          </a>
-        </li>
-      </ul>
-      <div fxLayout="column" fxFill>
-        <div fxLayout="column" fxFlexAlign="center">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <h1>{{ 'TITLE' | translate}}</h1>
+          <div>
+            <a mat-button routerLink="todo">
+              <mat-label>{{ 'TODO.TODO' | translate }}</mat-label>
+            </a>
+            <a mat-button routerLink="login">
+              <mat-label>{{ 'LOGIN.LOGOUT' | translate }}</mat-label>
+            </a>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div>
+        <div>
           <router-outlet></router-outlet>
         </div>
       </div>

@@ -33,7 +33,8 @@ export class LoginContainer implements OnInit {
 
   ngOnInit(): void {
     this.loginForm.reset();
-    this.loginForm.patchValue({name: undefined, password: undefined});
+    this.loginForm.patchValue({name: undefined, password: undefined, loggedIn: false});
+    this.store.dispatch(Action.logout());
   }
 
   onLogin(): void {

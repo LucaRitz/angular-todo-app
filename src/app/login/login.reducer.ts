@@ -14,18 +14,18 @@ export const initialState: UserState = {
 
 const loginReducer = createReducer(
   initialState,
-  on(Actions.login, (state, {user}) => {
+  on(Actions.logout, (state) => {
     return {
       ...state,
-      user
+      user: undefined
     };
   }),
-  on(Actions.register, (state, {user}) => {
+  on(Actions.loggedIn, (state, {user}) => {
     return {
       ...state,
-      user
+      user: {...user, loggedIn: true}
     };
-  }),
+  })
 );
 
 export function reducer(state: UserState | undefined, action: Action): UserState {
