@@ -11,13 +11,10 @@ import {User} from './login';
     <mat-card [formGroup]="loginForm.form">
       <div fxLayout="row">
         <mat-form-field fxFlex="25">
-          <input matInput placeholder="{{ 'LOGIN.USER_NAME' | translate }}" formControlName="name" #nameInput/>
-          <mat-error appFormError></mat-error>
+          <input matInput placeholder="{{ 'LOGIN.USER_NAME' | translate }}" formControlName="name"/>
         </mat-form-field>
         <mat-form-field fxFlex="25">
-          <input matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" formControlName="password"
-                 #password/>
-          <mat-error appFormError></mat-error>
+          <input type="password" matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" formControlName="password"/>
         </mat-form-field>
       </div>
       <button (click)="onLogin()">{{'LOGIN.LOGIN' | translate}}</button>
