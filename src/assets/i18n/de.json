@@ -1,11 +1,14 @@
 {
   "TITLE": "Todo Applikation",
+  "FORM_INVALID": "Invalide Eingabe",
   "LOGIN": {
     "USER_NAME": "Username",
     "PASSWORD": "Passwort",
     "LOGIN": "Login",
     "LOGOUT": "Logout",
-    "REGISTER": "Registrieren"
+    "REGISTER": "Registrieren",
+    "LOGIN_FAILURE": "Login fehlgeschlagen",
+    "LOGOUT_FAILURE": "Logout fehlgeschlagen"
   },
   "TODO": {
     "TODO": "Todo",

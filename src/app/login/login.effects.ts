@@ -5,6 +5,7 @@ import {of} from 'rxjs';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import * as Action from './login.actions';
 import {Router} from '@angular/router';
+import {NotificationService} from '../notification.service';
 
 @Injectable()
 export class LoginEffects {
@@ -16,7 +17,10 @@ export class LoginEffects {
       map(user => {
         return Action.loggedIn({user});
       }),
-      catchError(() => of(Action.empty())) //  TODO: Display error message
+      catchError(() => {
+        this.notificationService.show('LOGIN.LOGIN_FAILURE');
+        return of(Action.empty());
+      })
     ))
   ));
 
@@ -27,7 +31,10 @@ export class LoginEffects {
       map(user => {
         return Action.loggedIn({user});
       }),
-      catchError(() => of(Action.empty())) //  TODO: Display error message
+      catchError(() => {
+        this.notificationService.show('LOGIN.LOGOUT_FAILURE');
+        return of(Action.empty());
+      })
     ))
   ));
 
@@ -41,7 +48,8 @@ export class LoginEffects {
   ));
   constructor(private readonly actions$: Actions,
               private readonly service: LoginService,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly notificationService: NotificationService) {
   }
 
 }

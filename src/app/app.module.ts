@@ -18,6 +18,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 // AoT requires an exported function for factories
 export function createHttpLoader(http: HttpClient): TranslateHttpLoader {
@@ -49,7 +50,8 @@ export function createHttpLoader(http: HttpClient): TranslateHttpLoader {
     FormsModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'}

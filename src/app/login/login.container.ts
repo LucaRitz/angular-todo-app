@@ -4,6 +4,8 @@ import {Store} from '@ngrx/store';
 import {UserState} from './login.reducer';
 import {LoginForm} from './login.form';
 import {User} from './login';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {NotificationService} from '../notification.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +27,7 @@ import {User} from './login';
 export class LoginContainer implements OnInit {
 
   constructor(public readonly loginForm: LoginForm,
+              private readonly notificationService: NotificationService,
               private readonly store: Store<UserState>) {
   }
 
@@ -51,7 +54,7 @@ export class LoginContainer implements OnInit {
   private getValueIfValid(): User {
     let user: User;
     if (this.loginForm.isInvalid()) {
-      // this.notificationService.warning('FORM_INVALID'); TODO: Notify
+      this.notificationService.show('FORM_INVALID');
     } else {
       user = this.loginForm.value();
     }
