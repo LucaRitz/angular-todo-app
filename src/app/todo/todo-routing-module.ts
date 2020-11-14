@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {TodoSearchContainer} from './todo-search.container';
+import {TodoDetailContainer} from './todo-detail.container';
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'search', component: TodoSearchContainer },
-  // { path: 'detail/:id', component: DetailContainer },
+  { path: 'detail', component: TodoDetailContainer },
+  { path: 'detail/:id', component: TodoDetailContainer },
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports

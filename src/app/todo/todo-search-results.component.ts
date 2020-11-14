@@ -9,6 +9,9 @@ import {TodoSearchResult} from './todo';
       <mat-card-title-group>
         <mat-card-title>
           <span>{{'TODO.TITLE' | translate}}</span>
+          <button mat-icon-button [attr.aria-label]="'TODO.ADD' | translate" [routerLink]="detailPath">
+            <mat-icon>add</mat-icon>
+          </button>
         </mat-card-title>
       </mat-card-title-group>
       <mat-card-content>
@@ -21,4 +24,6 @@ export class TodoSearchResultsComponent {
 
   @Input()
   results: TodoSearchResult[];
+
+  detailPath = '/todo/detail/';
 }

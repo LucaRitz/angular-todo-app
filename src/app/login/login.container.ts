@@ -4,24 +4,35 @@ import {Store} from '@ngrx/store';
 import {UserState} from './login.reducer';
 import {LoginForm} from './login.form';
 import {User} from './login';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationService} from '../notification.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card [formGroup]="loginForm.form">
-      <div fxLayout="row">
-        <mat-form-field fxFlex="25">
-          <input matInput placeholder="{{ 'LOGIN.USER_NAME' | translate }}" formControlName="name"/>
-        </mat-form-field>
-        <mat-form-field fxFlex="25">
-          <input type="password" matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" formControlName="password"/>
-        </mat-form-field>
-      </div>
-      <button (click)="onLogin()">{{'LOGIN.LOGIN' | translate}}</button>
-      <button (click)="onRegister()">{{'LOGIN.REGISTER' | translate}}</button>
-    </mat-card>
+    <form [formGroup]="loginForm.form" (ngSubmit)="onLogin()">
+      <mat-card>
+        <mat-card-title>
+          {{'LOGIN.LOGIN' | translate}}
+        </mat-card-title>
+        <mat-card-content>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="{{ 'LOGIN.USER_NAME' | translate }}" formControlName="name"/>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input type="password" matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}"
+                     formControlName="password"/>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" mat-raised-button color="primary">{{'LOGIN.LOGIN' | translate}}</button>
+          <button type="button" (click)="onRegister()" mat-raised-button>{{'LOGIN.REGISTER' | translate}}</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
   `
 })
 export class LoginContainer implements OnInit {

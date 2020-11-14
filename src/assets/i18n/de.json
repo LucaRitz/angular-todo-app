@@ -1,6 +1,13 @@
 {
   "TITLE": "Todo Applikation",
   "FORM_INVALID": "Invalide Eingabe",
+  "SAVE": "Speichern",
+  "CANCEL": "Abbrechen",
+  "FORM": {
+    "ERROR": {
+      "required": "Pflichtfeld"
+    }
+  },
   "LOGIN": {
     "USER_NAME": "Username",
     "PASSWORD": "Passwort",
@@ -12,6 +19,24 @@
   },
   "TODO": {
     "TODO": "Todo",
-    "TITLE": "Todo-Suche"
+    "TITLE": "Todo-Suche",
+    "ADD": "Todo hinzufügen",
+    "SAVED": "Todo gespeichert",
+    "DELETED": "Todo gelöscht",
+    "CONFIRM_DELETE": "Wollen Sie das Todo wirklich löschen?",
+    "DETAIL": {
+      "TITLE": "Titel",
+      "DUE_DATE": "Fälligkeitsdatum"
+    }
+  },
+  "HTTP": {
+    "UNKNOWN": "Serverfehler",
+    "401": "Fehlende Authorisierung",
+    "403": "Fehlende Berechtigung",
+    "400": "Fehlerhafte Eingabe",
+    "404": "Nicht gefunden",
+    "408": "Zeitüberschreitung bei der Anfrage",
+    "500": "Interner Serverfehler",
+    "501": "Nicht implementiert"
   }
 }

@@ -28,6 +28,36 @@ const todoReducer = createReducer(
       results
     };
   }),
+  on(Actions.getDetail, (state) => {
+    return {
+      ...state,
+      detail: initialState.detail
+    };
+  }),
+  on(Actions.detailLoaded, (state, {detail}) => {
+    return {
+      ...state,
+      detail
+    };
+  }),
+  on(Actions.saveDetail, (state, {detail}) => {
+    return {
+      ...state,
+      detail
+    };
+  }),
+  on(Actions.detailSaved, (state, {detail}) => {
+    return {
+      ...state,
+      detail
+    };
+  }),
+  on(Actions.detailDeleted, (state) => {
+    return {
+      ...state,
+      detail: initialState.detail
+    };
+  }),
 );
 
 export function reducer(state: TodoState | undefined, action: Action): TodoState {
