@@ -19,12 +19,15 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
         </mat-toolbar-row>
       </mat-toolbar>
       <div>
-        <div>
+        <div class="main-view">
           <router-outlet></router-outlet>
         </div>
       </div>
     </div>
-  `
+  `,
+  styles: [
+    '.main-view {width: 60%; margin: auto;}'
+  ]
 })
 export class AppComponent {
 }
