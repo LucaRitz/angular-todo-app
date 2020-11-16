@@ -32,15 +32,17 @@ import {TodoSearchResult} from './todo';
           </div>
         </td>
       </ng-container>
+      <!-- Important -->
       <ng-container matColumnDef="important">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let todo" [routerLink]="detailPath + todo.id">
+        <td mat-cell *matCellDef="let todo">
           <div>
-            <a>
-              <div style="cursor: pointer;">
-                <mat-icon [fontSet]="todo.important ? '' : 'material-icons-outlined'">grade</mat-icon>
-              </div>
-            </a>
+            <button type="button" mat-icon-button [attr.aria-label]="(todo.important ? 'TODO.MARK_UNIMPORTANT' : 'TODO.MARK_IMPORTANT') | translate">
+              <mat-icon [fontSet]="todo.important ? '' : 'material-icons-outlined'"
+                        [attr.aria-label]="todo.important ? ('TODO.IS_IMPORTANT' | translate) : ('TODO.IS_UNIMPORTANT' | translate)">
+                grade
+              </mat-icon>
+            </button>
           </div>
         </td>
       </ng-container>
@@ -54,6 +56,20 @@ import {TodoSearchResult} from './todo';
                 <mat-label>{{ todo.dueDate }}</mat-label>
               </div>
             </a>
+          </div>
+        </td>
+      </ng-container>
+      <!-- Edit-/Delete-Button -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let todo">
+          <div>
+            <button type="button" mat-icon-button [attr.aria-label]="'TODO.EDIT' | translate" [routerLink]="detailPath + todo.id">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button type="button" mat-icon-button [attr.aria-label]="'TODO.DELETE' | translate">
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
         </td>
       </ng-container>
@@ -71,7 +87,7 @@ export class TodoSearchResultComponent {
   @Input()
   results: TodoSearchResult[];
 
-  displayedColumns: string[] = ['number', 'title', 'important', 'dueDate'];
+  displayedColumns: string[] = ['number', 'title', 'important', 'dueDate', 'actions'];
   detailPath = '/todo/detail/';
 
 }
