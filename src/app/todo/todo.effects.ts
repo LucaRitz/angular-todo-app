@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {TodoService} from './todo.service';
-import {EMPTY, Observable, of} from 'rxjs';
+import {EMPTY, forkJoin, Observable, of} from 'rxjs';
 import {catchError, mergeMap, switchMap, tap} from 'rxjs/operators';
 import * as Action from './todo.actions';
 import * as LoginSelectors from '../login/login.selectors';
@@ -34,6 +34,22 @@ export class TodoEffects {
           mergeMap(detail => of(Action.detailLoaded({detail}))),
         )
         : EMPTY),
+      catchError(() => EMPTY)
+    ))
+  ));
+
+  completeTodo$ = createEffect(() => this.actions$.pipe(
+    ofType(Action.completeTodo),
+    switchMap(action => of(action.item).pipe(
+      mergeMap(item => this.user$.pipe(
+        mergeMap(user => forkJoin([this.service.get(user, item.id), of(user)])),
+        mergeMap(([todo, user]) => {
+          todo.completed = item.completed;
+          return this.service.update(user, todo);
+        }),
+      )),
+      tap(() => this.notificationService.success('TODO.SAVED')),
+      mergeMap(() => of(Action.search())),
       catchError(() => EMPTY)
     ))
   ));

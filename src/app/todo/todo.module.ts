@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {SharedModule} from '../shared/shared.module';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
   ]
 })
 export class TodoModule {

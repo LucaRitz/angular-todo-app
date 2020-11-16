@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {TodoSearchResult} from './todo';
 
 @Component({
@@ -26,7 +26,7 @@ import {TodoSearchResult} from './todo';
           <div>
             <a>
               <div style="cursor: pointer;">
-                <mat-label class="main-text">{{ todo.title }}</mat-label>
+                <mat-label [class.main-text]="todo.important" [class.strike-through]="todo.completed">{{ todo.title }}</mat-label>
               </div>
             </a>
           </div>
@@ -59,6 +59,19 @@ import {TodoSearchResult} from './todo';
           </div>
         </td>
       </ng-container>
+      <!-- Completed -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let todo">
+          <div>
+            <a>
+              <div style="cursor: pointer;">
+                <mat-checkbox [checked]="todo.completed" (change)="completed.emit({id: todo.id, completed: $event.checked})"></mat-checkbox>
+              </div>
+            </a>
+          </div>
+        </td>
+      </ng-container>
       <!-- Edit-/Delete-Button -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -79,7 +92,8 @@ import {TodoSearchResult} from './todo';
   styles: [
     '.mat-cell {padding: 10px 5px 10px 5px; vertical-align: middle; }',
     'mat-label {margin-left: 10px;}',
-    '.main-text {font-weight: bold;}'
+    '.main-text {font-weight: bold;}',
+    '.strike-through {text-decoration: line-through;}'
   ]
 })
 export class TodoSearchResultComponent {
@@ -87,7 +101,10 @@ export class TodoSearchResultComponent {
   @Input()
   results: TodoSearchResult[];
 
-  displayedColumns: string[] = ['number', 'title', 'important', 'dueDate', 'actions'];
+  @Output()
+  completed = new EventEmitter();
+
+  displayedColumns: string[] = ['number', 'title', 'important', 'dueDate', 'completed', 'actions'];
   detailPath = '/todo/detail/';
 
 }

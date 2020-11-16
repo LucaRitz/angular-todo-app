@@ -7,6 +7,7 @@ export const resultsLoaded = createAction('[Todo API] Suchresultat geladen', pro
 export const getDetail = createAction('[Todo] Todo laden', props<{ id: string }>());
 export const detailLoaded = createAction('[Todo API] Todo geladen', props<{ detail: Todo }>());
 
+export const completeTodo = createAction('[Todo] Speichern Liste', props<{ item: {id: string, completed: boolean} }>());
 export const saveDetail = createAction('[Todo] Speichern', props<{ detail: Todo }>());
 export const detailSaved = createAction('[Todo API] Todo gespeichert', props<{ detail: Todo }>());
 export const deleteDetail = createAction('[Todo] Löschen', props<{ id: string }>());

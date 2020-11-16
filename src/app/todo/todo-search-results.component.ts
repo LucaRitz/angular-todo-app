@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {TodoSearchResult} from './todo';
 
 @Component({
@@ -15,7 +15,7 @@ import {TodoSearchResult} from './todo';
         </mat-card-title>
       </mat-card-title-group>
       <mat-card-content>
-        <app-todo-result [results]="results"></app-todo-result>
+        <app-todo-result (completed)="completed.emit($event)" [results]="results"></app-todo-result>
       </mat-card-content>
     </mat-card>
   `
@@ -24,6 +24,8 @@ export class TodoSearchResultsComponent {
 
   @Input()
   results: TodoSearchResult[];
+  @Output()
+  completed = new EventEmitter();
 
   detailPath = '/todo/detail/';
 }

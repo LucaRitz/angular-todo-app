@@ -10,7 +10,7 @@ import {TodoState} from './todo.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container>
-      <app-todo-search-results [results]="results$ | async"></app-todo-search-results>
+      <app-todo-search-results [results]="results$ | async" (completed)="save($event)"></app-todo-search-results>
     </ng-container>
   `
 })
@@ -28,5 +28,9 @@ export class TodoSearchContainer implements OnInit {
 
   onSearch(): void {
     this.store.dispatch(Action.search());
+  }
+
+  save(todo: {id: string, completed: boolean}): void {
+    this.store.dispatch(Action.completeTodo({item: todo}));
   }
 }
