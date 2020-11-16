@@ -34,7 +34,7 @@ import {TodoForm} from './todo.form';
         </mat-card-content>
         <mat-card-actions>
           <button type="submit" mat-raised-button color="primary">{{'SAVE' | translate}}</button>
-          <button type="button" appBackButton mat-raised-button>{{'CANCEL' | translate}}</button>
+          <button type="button" appBackButton mat-raised-button>{{'BACK' | translate}}</button>
         </mat-card-actions>
       </mat-card>
     </form>

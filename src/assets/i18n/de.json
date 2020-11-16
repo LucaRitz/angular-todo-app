@@ -3,6 +3,7 @@
   "FORM_INVALID": "Invalide Eingabe",
   "SAVE": "Speichern",
   "CANCEL": "Abbrechen",
+  "BACK": "Zurück",
   "FORM": {
     "ERROR": {
       "required": "Pflichtfeld"

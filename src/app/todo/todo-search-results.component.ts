@@ -15,7 +15,10 @@ import {TodoSearchResult} from './todo';
         </mat-card-title>
       </mat-card-title-group>
       <mat-card-content>
-        <app-todo-result (completed)="completed.emit($event)" [results]="results"></app-todo-result>
+        <app-todo-result (completed)="completed.emit($event)"
+                         (setImportant)="setImportant.emit($event)"
+                         (delete)="delete.emit($event)"
+                         [results]="results"></app-todo-result>
       </mat-card-content>
     </mat-card>
   `
@@ -26,6 +29,10 @@ export class TodoSearchResultsComponent {
   results: TodoSearchResult[];
   @Output()
   completed = new EventEmitter();
+  @Output()
+  setImportant = new EventEmitter();
+  @Output()
+  delete = new EventEmitter();
 
   detailPath = '/todo/detail/';
 }

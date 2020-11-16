@@ -6,14 +6,14 @@ import {TodoSearchResult} from './todo';
   selector: 'app-todo-result',
   template: `
     <table mat-table [dataSource]="results">
-      <!-- Number -->
-      <ng-container matColumnDef="number">
+      <!-- Completed -->
+      <ng-container matColumnDef="completed">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let todo" [routerLink]="detailPath + todo.id">
+        <td mat-cell *matCellDef="let todo">
           <div>
             <a>
               <div style="cursor: pointer;">
-                <mat-label>{{ todo.id }}</mat-label>
+                <mat-checkbox [checked]="todo.completed" (change)="completed.emit({id: todo.id, completed: $event.checked})"></mat-checkbox>
               </div>
             </a>
           </div>
@@ -37,7 +37,9 @@ import {TodoSearchResult} from './todo';
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let todo">
           <div>
-            <button type="button" mat-icon-button [attr.aria-label]="(todo.important ? 'TODO.MARK_UNIMPORTANT' : 'TODO.MARK_IMPORTANT') | translate">
+            <button type="button" mat-icon-button
+                    [attr.aria-label]="(todo.important ? 'TODO.MARK_UNIMPORTANT' : 'TODO.MARK_IMPORTANT') | translate"
+                    (click)="setImportant.emit({detail: todo, important: !todo.important})">
               <mat-icon [fontSet]="todo.important ? '' : 'material-icons-outlined'"
                         [attr.aria-label]="todo.important ? ('TODO.IS_IMPORTANT' | translate) : ('TODO.IS_UNIMPORTANT' | translate)">
                 grade
@@ -59,19 +61,6 @@ import {TodoSearchResult} from './todo';
           </div>
         </td>
       </ng-container>
-      <!-- Completed -->
-      <ng-container matColumnDef="completed">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let todo">
-          <div>
-            <a>
-              <div style="cursor: pointer;">
-                <mat-checkbox [checked]="todo.completed" (change)="completed.emit({id: todo.id, completed: $event.checked})"></mat-checkbox>
-              </div>
-            </a>
-          </div>
-        </td>
-      </ng-container>
       <!-- Edit-/Delete-Button -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -80,7 +69,8 @@ import {TodoSearchResult} from './todo';
             <button type="button" mat-icon-button [attr.aria-label]="'TODO.EDIT' | translate" [routerLink]="detailPath + todo.id">
               <mat-icon>edit</mat-icon>
             </button>
-            <button type="button" mat-icon-button [attr.aria-label]="'TODO.DELETE' | translate">
+            <button type="button" mat-icon-button [attr.aria-label]="'TODO.DELETE' | translate"
+                    (click)="delete.emit(todo.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -104,7 +94,13 @@ export class TodoSearchResultComponent {
   @Output()
   completed = new EventEmitter();
 
-  displayedColumns: string[] = ['number', 'title', 'important', 'dueDate', 'completed', 'actions'];
+  @Output()
+  setImportant = new EventEmitter();
+
+  @Output()
+  delete = new EventEmitter();
+
+  displayedColumns: string[] = ['completed', 'title', 'important', 'dueDate', 'actions'];
   detailPath = '/todo/detail/';
 
 }

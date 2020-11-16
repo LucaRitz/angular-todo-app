@@ -17,7 +17,7 @@ import {User} from '../login/login';
 export class TodoEffects {
 
   search$ = createEffect(() => this.actions$.pipe(
-    ofType(Action.search),
+    ofType(Action.search, Action.importantSet, Action.completed, Action.rowDeleted),
     switchMap(() => this.user$.pipe(
       mergeMap(user => this.service.search(user)),
       mergeMap(results => of(Action.resultsLoaded({results}))),
@@ -48,8 +48,7 @@ export class TodoEffects {
           return this.service.update(user, todo);
         }),
       )),
-      tap(() => this.notificationService.success('TODO.SAVED')),
-      mergeMap(() => of(Action.search())),
+      mergeMap(() => of(Action.completed())),
       catchError(() => EMPTY)
     ))
   ));
@@ -72,16 +71,27 @@ export class TodoEffects {
     ))
   ));
 
-  deleteDetail$ = createEffect(() => this.actions$.pipe(
-    ofType(Action.deleteDetail),
+  setImportant$ = createEffect(() => this.actions$.pipe(
+    ofType(Action.setImportant),
+    switchMap((action) => of({...action.detail, important: action.important}).pipe(
+      mergeMap((detail: Todo) =>
+        this.user$.pipe(
+          mergeMap(user => this.service.update(user, detail))
+        )
+      ),
+      mergeMap(detail => of(Action.importantSet())),
+      catchError(() => EMPTY)
+    ))
+  ));
+
+  deleteRow$ = createEffect(() => this.actions$.pipe(
+    ofType(Action.deleteRow),
     switchMap((action) => of(action.id).pipe(
       mergeMap(id =>
         this.user$.pipe(
           mergeMap(user => this.service.delete(user, id)),
         )),
-      tap(() => this.notificationService.success('TODO.DELETED')),
-      tap(() => this.router.navigate(['todo', 'search'], {replaceUrl: true}).then()),
-      mergeMap(() => of(Action.detailDeleted())),
+      mergeMap(() => of(Action.rowDeleted())),
       catchError(() => EMPTY)
     ))
   ));
