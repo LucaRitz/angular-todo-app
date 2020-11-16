@@ -7,5 +7,7 @@ export interface TodoSearchResult {
 export interface Todo {
   id?: number;
   title: string;
-  dueDate: string;
+  dueDate?: string;
+  important: boolean;
+  completed: boolean;
 }
