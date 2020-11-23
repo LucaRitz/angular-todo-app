@@ -32,6 +32,7 @@
     "CONFIRM_DELETE": "Wollen Sie das Todo wirklich löschen?",
     "DETAIL": {
       "TITLE": "Titel",
+      "CATEGORY": "Kategorie",
       "DUE_DATE": "Fälligkeitsdatum"
     }
   },
