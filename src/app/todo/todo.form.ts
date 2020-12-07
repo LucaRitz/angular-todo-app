@@ -7,6 +7,7 @@ export class TodoForm {
   group: FormGroup = new FormGroup({
     id: new FormControl(),
     title: new FormControl('', Validators.required),
+    category: new FormControl(''),
     dueDate: new FormControl(''),
     important: new FormControl(false),
     completed: new FormControl(false)
@@ -30,6 +31,10 @@ export class TodoForm {
 
   get title(): FormControl {
     return this.group.get('title') as FormControl;
+  }
+
+  get category(): FormControl {
+    return this.group.get('category') as FormControl;
   }
 
   get dueDate(): FormControl {

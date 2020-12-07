@@ -26,6 +26,13 @@ import {TodoForm} from './todo.form';
           </div>
           <div>
             <mat-form-field>
+              <mat-label>{{'TODO.DETAIL.CATEGORY' | translate}}</mat-label>
+              <input type="text" matInput [formControlName]="'category'">
+              <mat-error *ngIf="form.category.invalid">{{form.getError(form.category) | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
               <mat-label>{{'TODO.DETAIL.DUE_DATE' | translate}}</mat-label>
               <input type="date" matInput [formControlName]="'dueDate'">
               <mat-error *ngIf="form.dueDate.invalid">{{form.getError(form.dueDate) | translate}}</mat-error>
